@@ -4,26 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./dist/index.js",
+    "start-local": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
+    "build": "tsc",
+    "lint": "tslint src/**/*"
   },
   "author": "Mateus Gomes da Silva Cardoso",
   "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.10.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.16"
+  },
   "devDependencies": {
     "@types/cors": "^2.8.4",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.16.1",
+    "@types/helmet": "0.0.43",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/node": "^11.13.7",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.5.1",
-    "pg": "^7.10.0",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.16"
   }
 }
