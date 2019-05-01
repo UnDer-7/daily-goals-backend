@@ -1,10 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
 import { createConnection } from 'typeorm';
 import { config } from './config/database.config';
 import { ConsoleColors } from './utils/console.colors';
 import authRoutes from './routes/auth.routes';
+import { GoogleStrategy } from './passaport/google.strategy';
+import helmet = require('helmet');
 
 class Server {
   public express: express.Application;
@@ -13,6 +14,7 @@ class Server {
     this.express = express();
 
     this.startDatabase();
+    this.initializeStrategies();
     this.middleware();
     this.routes();
   }
@@ -27,9 +29,15 @@ class Server {
     }
   }
 
+  private initializeStrategies(): void {
+    GoogleStrategy.strategy();
+  }
+
   private middleware(): void {
-    // this.express.use(helmet());
-    this.express.use(cors());
+    this.express.use(helmet());
+    this.express.use(cors({
+      origin: 'http://localhost:4200'
+    }));
     this.express.use(express.json());
   }
 
